@@ -1,0 +1,25 @@
+<fieldset>
+	<%= form_for(@sclass) do |form| %>	
+	<div>
+		<%= form.label :class_name %><br>
+		<%= form.text_field :class_name %>
+	</div><br>
+	<div>
+		<%= form.label :subject %><br>
+		<%= form.text_field :subject %>
+	</div><br>
+	<div>
+		<%= form.label :section %><br>
+		<%= form.text_field :section %>
+	</div><br>
+	<%= form.select :user_id, User.all.collect { |u| [u.email, u.id ] }, include_blank: true%>
+	<br><br>
+
+	<div>
+        <%= form.submit %>
+    </div>
+	<br>
+	<%= link_to 'Back', :back %>
+	<%end%>
+
+</fieldset>

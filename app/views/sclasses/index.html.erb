@@ -1,0 +1,13 @@
+<fieldset>
+    <legend align = "center">
+    <h1>New Class</h1>
+    </legend><%# @users.each do |user|%>
+	<%
+=begin%>
+ <p><%#= user.email %></p> 
+<%
+=end%>
+	<%end%>
+    <%=  link_to "Create New Class", new_sclass_path %><br>
+    <%= link_to 'Back', :back %>
+</fieldset>

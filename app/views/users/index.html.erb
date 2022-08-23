@@ -1,0 +1,44 @@
+<fieldset>
+	<h1>Login Dashboard</h1>
+	<% if user_signed_in?  %>
+	<%=current_user.mobile_number %>
+	<%= link_to "Edit", edit_user_registration_path %>	
+	<%= button_to "Logout", destroy_user_session_path, method: :delete %><br>
+
+	<%= link_to "Create Class", sclasses_path %>
+	<% if current_user.has_role? :principle%>
+	<% @users.each do |user|%>
+	<% if user.roles.first.name == "student"%>
+	
+	<p><%= user.email %></p>
+	<p><%= user.address %></p>
+	<%= link_to "Update", edit_user_path(user) %> <br><br>
+	<%= button_to "Delete",user, method: :delete, data: { confirm: "You sure?" } %>
+	<%end%>
+	<%end%>
+
+	<% else%>
+	<% @users.each do |user|%>
+	<p><%= user.email %></p>
+	<p><%= user.address %></p>
+	<%end%>
+	<%# if @user.sclasses != []%>
+	<%#= @user.sclasses.first.class_name%>
+	<%#else%>
+	<%
+=begin%>
+ <p>Not class assign</p> 
+<%
+=end%>
+	<%#end%>
+	
+	
+	<%end%>
+
+	
+	<% else %>
+	<%= link_to "Sign in" , new_user_session_path %><br><br>
+	<%= link_to "New Student" , new_user_registration_path %>
+	<% end %>
+
+</fieldset>
